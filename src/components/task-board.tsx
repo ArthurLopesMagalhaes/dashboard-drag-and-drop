@@ -1,91 +1,45 @@
-import { DndContext, DragEndEvent } from "@dnd-kit/core";
+import {
+  DndContext,
+  DragEndEvent,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
 import { TaskCardProps } from "./task-card";
 import { TaskColumn } from "./task-column";
 import { useState } from "react";
-
-type TasksBoard = TaskCardProps[];
-
-const SAMPLE_COLUMNS = [
-  { id: "todo", title: "To Do" },
-  { id: "inProgress", title: "In Progress" },
-  { id: "review", title: "Done" },
-];
-
-const SAMPLE_TASKS: TasksBoard = [
-  {
-    id: "1",
-    title: "Design Website Homepage",
-    description: "E-commerce Redesign",
-    content: "Create wireframes and define the layout.", // Curto
-    status: "todo",
-  },
-  {
-    id: "2",
-    title: "Review Vendor Contract",
-    description: "Vendor Management System",
-    content:
-      "Analyze the vendor contract for compliance, terms, and conditions. Ensure all clauses are clear and aligned with company policies.", // Médio
-    status: "inProgress",
-  },
-  {
-    id: "3",
-    title: "Review Vendor Contract",
-    description: "Vendor Management System",
-    content:
-      "Analyze the vendor contract for compliance, terms, and conditions. Ensure all clauses are clear and aligned with company policies.", // Médio
-    status: "review",
-  },
-  {
-    id: "4",
-    title: "Update Customer Database",
-    description: "Infrastructure Upgrade",
-    content:
-      "Migrate customer data to the new database schema and ensure data integrity. Perform data cleanup and remove duplicate entries for improved performance and accuracy.", // Longo
-    status: "todo",
-  },
-  {
-    id: "5",
-    title: "Prepare Project Proposal",
-    description: "Expansion Plan 2024",
-    content:
-      "Draft an initial proposal outlining objectives, budget, and milestones.", // Médio
-    status: "review",
-  },
-  {
-    id: "6",
-    title: "Prepare Project Proposal",
-    description: "Expansion Plan 2024",
-    content:
-      "Draft an initial proposal outlining objectives, budget, and milestones.", // Médio
-    status: "todo",
-  },
-  {
-    id: "7",
-    title: "Migrate Data to New Server",
-    description: "Infrastructure Upgrade",
-    content:
-      "Validate the migration process and verify all services are running as expected. Ensure no data is lost during the transfer.", // Médio
-    status: "inProgress",
-  },
-  {
-    id: "8",
-    title: "Update User Guide",
-    description: "User Support Docs",
-    content: "Edit and enhance the documentation for new features.", // Curto
-    status: "todo",
-  },
-  {
-    id: "9",
-    title: "Update User Guide",
-    description: "User Support Docs",
-    content:
-      "Review feedback and refine the guide for clarity and completeness. Add screenshots and examples where necessary to improve usability for end-users.", // Longo
-    status: "todo",
-  },
-];
+import { SAMPLE_COLUMNS } from "../mocks/sampleColumns";
+import { SAMPLE_TASKS } from "../mocks/sampleTasks";
+import { AnimatePresence } from "motion/react";
+import { v4 as uuidv4 } from "uuid";
 
 export function TaskBoard() {
   const [tasks, setTasks] = useState(SAMPLE_TASKS);
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 10,
+      },
+    })
+  );
+
+  function handleDeleteTask(taskId: string) {
+    // console.log(taskId);
+    setTasks(() => tasks.filter((task) => task.id !== taskId));
+  }
+
+  function handleAddNewTask(status: TaskCardProps["status"]) {
+    const newTask = {
+      id: uuidv4(),
+      title: "New task",
+      description: "Description",
+      content: "Content",
+      status,
+    };
+
+    setTasks((prevTasks) => [...prevTasks, newTask]);
+  }
 
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
@@ -108,16 +62,23 @@ export function TaskBoard() {
   }
 
   return (
-    <div className="flex gap-4 p-4 h-full bg-zinc-50 rounded-lg flex-grow flex-wrap justify-center">
-      <DndContext onDragEnd={handleDragEnd}>
-        {SAMPLE_COLUMNS.map((column) => (
-          <TaskColumn
-            id={column.id}
-            title={column.title}
-            tasks={tasks.filter((task) => task.status === column.id)}
-          />
-        ))}
-      </DndContext>
-    </div>
+    <AnimatePresence>
+      <div className="flex gap-4 p-4 h-full bg-zinc-50 rounded-lg flex-grow flex-wrap justify-center">
+        <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
+          {SAMPLE_COLUMNS.map((column) => (
+            <TaskColumn
+              key={column.id}
+              id={column.id}
+              title={column.title}
+              tasks={tasks.filter((task) => task.status === column.id)}
+              onRemoveTask={(id) => handleDeleteTask(id)}
+              onAddTask={() =>
+                handleAddNewTask(column.id as TaskCardProps["status"])
+              }
+            />
+          ))}
+        </DndContext>
+      </div>
+    </AnimatePresence>
   );
 }
