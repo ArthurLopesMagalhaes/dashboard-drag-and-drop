@@ -1,8 +1,15 @@
+import { DndContext, DragEndEvent } from "@dnd-kit/core";
 import { TaskCardProps } from "./task-card";
 import { TaskColumn } from "./task-column";
 import { useState } from "react";
 
 type TasksBoard = TaskCardProps[];
+
+const SAMPLE_COLUMNS = [
+  { id: "todo", title: "To Do" },
+  { id: "inProgress", title: "In Progress" },
+  { id: "review", title: "Done" },
+];
 
 const SAMPLE_TASKS: TasksBoard = [
   {
@@ -80,26 +87,37 @@ const SAMPLE_TASKS: TasksBoard = [
 export function TaskBoard() {
   const [tasks, setTasks] = useState(SAMPLE_TASKS);
 
+  function handleDragEnd(event: DragEndEvent) {
+    const { active, over } = event;
+
+    if (!over) return;
+
+    const taskId = active.id as string;
+    const newStatus = over.id as TaskCardProps["status"];
+
+    setTasks(() =>
+      tasks.map((task) =>
+        task.id === taskId
+          ? {
+              ...task,
+              status: newStatus,
+            }
+          : task
+      )
+    );
+  }
+
   return (
-    <div className="flex gap-4 p-4 h-full  bg-zinc-50 rounded-lg flex-grow ">
-      <TaskColumn
-        id="1"
-        title="To-do"
-        count={31}
-        tasks={tasks.filter((task) => task.status === "todo")}
-      />
-      <TaskColumn
-        id="2"
-        title="In-Progress"
-        count={5}
-        tasks={tasks.filter((task) => task.status === "inProgress")}
-      />
-      <TaskColumn
-        id="3"
-        title="Review Internal"
-        count={2}
-        tasks={tasks.filter((task) => task.status === "review")}
-      />
+    <div className="flex gap-4 p-4 h-full bg-zinc-50 rounded-lg flex-grow flex-wrap justify-center">
+      <DndContext onDragEnd={handleDragEnd}>
+        {SAMPLE_COLUMNS.map((column) => (
+          <TaskColumn
+            id={column.id}
+            title={column.title}
+            tasks={tasks.filter((task) => task.status === column.id)}
+          />
+        ))}
+      </DndContext>
     </div>
   );
 }

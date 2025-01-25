@@ -1,18 +1,29 @@
 import { Button } from "./ui/button";
 import { Plus } from "lucide-react";
 import { TaskCard } from "./task-card";
+import { useDroppable } from "@dnd-kit/core";
+import { cn } from "../lib/utils";
 
 interface TaskColumnProps {
   id: string;
   title: string;
-  count: number;
   tasks: Array<React.ComponentProps<typeof TaskCard>>;
+
   onAddTask?: () => void;
 }
 
-export function TaskColumn({ title, tasks, onAddTask }: TaskColumnProps) {
+export function TaskColumn({ id, title, tasks, onAddTask }: TaskColumnProps) {
+  const { setNodeRef, isOver } = useDroppable({
+    id: id,
+  });
+
   return (
-    <div className="flex flex-col h-full rounded-lg">
+    <div
+      className={cn(
+        "flex flex-col h-full  rounded-lg min-w-[320px] max-w-[400px]",
+        isOver && "bg-green-400"
+      )}
+    >
       <div className="flex items-center justify-between p-4">
         <div className="flex items-center gap-2">
           <h2 className="font-semibold">{title}</h2>
@@ -22,7 +33,7 @@ export function TaskColumn({ title, tasks, onAddTask }: TaskColumnProps) {
           <Plus className="h-4 w-4" />
         </Button>
       </div>
-      <div className="flex-1">
+      <div ref={setNodeRef} className="flex-1 min-h-20">
         {tasks.map((task) => (
           <TaskCard key={task.title} {...task} />
         ))}
