@@ -10,7 +10,7 @@ import { TaskColumn } from "./task-column";
 import { useState } from "react";
 import { SAMPLE_COLUMNS } from "../mocks/sampleColumns";
 import { SAMPLE_TASKS } from "../mocks/sampleTasks";
-import { AnimatePresence } from "motion/react";
+
 import { v4 as uuidv4 } from "uuid";
 
 export function TaskBoard() {
@@ -62,8 +62,8 @@ export function TaskBoard() {
   }
 
   return (
-    <AnimatePresence>
-      <div className="flex gap-4 p-4 h-full bg-zinc-50 rounded-lg flex-grow flex-wrap justify-center">
+    <div className="flex h-full bg-zinc-50 rounded-lg flex-grow justify-center">
+      <div className="grid grid-cols-1 gap-4 lg:max-2xl:grid-cols-3 2xl:grid-cols-4">
         <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
           {SAMPLE_COLUMNS.map((column) => (
             <TaskColumn
@@ -79,6 +79,6 @@ export function TaskBoard() {
           ))}
         </DndContext>
       </div>
-    </AnimatePresence>
+    </div>
   );
 }
