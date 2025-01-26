@@ -29,7 +29,7 @@ export function Carousel({ id, tasks, onRemoveTask }: CarouselProps) {
       >
         {tasks.length === 0 && (
           <CarouselItem>
-            <div className="flex h-full items-center justify-center">
+            <div className="flex h-full w-80 items-center justify-center">
               <p className="text-muted-foreground">Drop tasks here</p>
             </div>
           </CarouselItem>

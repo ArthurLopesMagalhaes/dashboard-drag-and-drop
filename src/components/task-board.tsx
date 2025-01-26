@@ -4,12 +4,12 @@ import { TaskColumn } from './task-column';
 
 import { SAMPLE_COLUMNS } from '../mocks/sampleColumns';
 
-import { useDragAndDropCards } from '../hooks/useDragAndDropCards';
+import { useTaskCards } from '../hooks/useTaskCards';
 import { Carousel } from './carousel';
 
 export function TaskBoard() {
   const { tasks, sensors, handleDeleteTask, handleAddNewTask, handleDragEnd } =
-    useDragAndDropCards();
+    useTaskCards();
 
   return (
     <DndContext sensors={sensors} onDragEnd={handleDragEnd}>

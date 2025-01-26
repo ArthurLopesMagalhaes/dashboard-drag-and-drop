@@ -6,96 +6,143 @@ export type TasksBoard = Omit<TaskCardProps, 'onRemove'>[];
 export const SAMPLE_TASKS: TasksBoard = [
   {
     id: uuidv4(),
-    title: 'Design Website Homepage',
-    description: 'E-commerce Redesign',
-    content: 'Create wireframes and define the layout.', // Curto
-    status: 'todo',
+    title: 'Develop Login Page',
+    description: 'Authentication System',
+    content: 'Implement user authentication and validation flow.', // Curto
+    status: 'done',
   },
   {
     id: uuidv4(),
-    title: 'Review Vendor Contract',
-    description: 'Vendor Management System',
+    title: 'Optimize API Calls',
+    description: 'Performance Enhancement',
     content:
-      'Analyze the vendor contract for compliance, terms, and conditions. Ensure all clauses are clear and aligned with company policies.', // Médio
+      'Analyze existing API calls and refactor for better performance. Reduce response time and handle edge cases.', // Médio
     status: 'inProgress',
   },
   {
     id: uuidv4(),
-    title: 'Review Vendor Contract 2',
-    description: 'Vendor Management System',
+    title: 'Write Test Cases',
+    description: 'Code Quality',
     content:
-      'Analyze the vendor contract for compliance, terms, and conditions. Ensure all clauses are clear and aligned with company policies.', // Médio
+      'Create comprehensive unit and integration tests for the payment module to ensure reliability and prevent regressions.', // Longo
     status: 'review',
   },
   {
     id: uuidv4(),
-    title: 'Update Customer Database',
-    description: 'Infrastructure Upgrade',
+    title: 'Plan Marketing Campaign',
+    description: 'Q2 Product Launch',
     content:
-      'Migrate customer data to the new database schema and ensure data integrity. Perform data cleanup and remove duplicate entries for improved performance and accuracy.', // Longo
+      'Collaborate with the marketing team to design a campaign strategy, including social media and email marketing efforts.', // Médio
     status: 'todo',
   },
   {
     id: uuidv4(),
-    title: 'Prepare Project Proposal',
-    description: 'Expansion Plan 2024',
+    title: 'Deploy to Production',
+    description: 'Release Management',
     content:
-      'Draft an initial proposal outlining objectives, budget, and milestones.', // Médio
-    status: 'review',
-  },
-  {
-    id: uuidv4(),
-    title: 'Prepare Project Proposal 2',
-    description: 'Expansion Plan 2024',
-    content:
-      'Draft an initial proposal outlining objectives, budget, and milestones.', // Médio
-    status: 'todo',
-  },
-  {
-    id: uuidv4(),
-    title: 'Migrate Data to New Server',
-    description: 'Infrastructure Upgrade',
-    content:
-      'Validate the migration process and verify all services are running as expected. Ensure no data is lost during the transfer.', // Médio
+      'Coordinate with QA and DevOps to roll out the latest application version to production. Monitor for errors post-deployment.', // Longo
     status: 'inProgress',
   },
   {
     id: uuidv4(),
-    title: 'Update User Guide',
-    description: 'User Support Docs',
-    content: 'Edit and enhance the documentation for new features.', // Curto
+    title: 'Research Competitor Products',
+    description: 'Market Analysis',
+    content: 'Analyze features and pricing strategies of competitors.', // Curto
+    status: 'review',
+  },
+  {
+    id: uuidv4(),
+    title: 'Create Onboarding Flow',
+    description: 'User Experience',
+    content:
+      'Design a smooth onboarding experience for new users, including walkthroughs and tooltips for key features.', // Médio
+    status: 'done',
+  },
+  {
+    id: uuidv4(),
+    title: 'Configure CI/CD Pipeline',
+    description: 'DevOps Automation',
+    content:
+      'Set up and test the CI/CD pipeline to streamline the development workflow. Automate builds, tests, and deployments.', // Longo
+    status: 'inProgress',
+  },
+  {
+    id: uuidv4(),
+    title: 'Organize Team Meeting',
+    description: 'Sprint Planning',
+    content:
+      'Schedule and conduct a meeting to discuss the next sprint goals and timelines.', // Curto
     status: 'todo',
   },
   {
     id: uuidv4(),
-    title: 'Update User Guide 2',
-    description: 'User Support Docs',
+    title: 'Prepare Performance Report',
+    description: 'Quarterly Review',
     content:
-      'Review feedback and refine the guide for clarity and completeness. Add screenshots and examples where necessary to improve usability for end-users.', // Longo
+      'Compile and analyze key performance indicators (KPIs) for the quarter. Present findings and improvement areas.', // Médio
+    status: 'review',
+  },
+  {
+    id: uuidv4(),
+    title: 'Design Feature Mockups',
+    description: 'UI/UX Enhancements',
+    content:
+      'Create interactive mockups for the new features. Gather feedback from stakeholders to refine the designs.', // Longo
     status: 'todo',
   },
   {
     id: uuidv4(),
-    title: 'Carousel',
-    description: 'User Support Docs',
+    title: 'Integrate Payment Gateway',
+    description: 'E-commerce Platform',
     content:
-      'Review feedback and refine the guide for clarity and completeness. Add screenshots and examples where necessary to improve usability for end-users.', // Longo
+      'Set up and test the integration of a secure payment gateway. Ensure compatibility across different platforms.', // Médio
+    status: 'inProgress',
+  },
+  {
+    id: uuidv4(),
+    title: 'Improve Accessibility',
+    description: 'User Experience',
+    content:
+      'Conduct an audit to identify accessibility gaps. Implement ARIA roles and improve keyboard navigation.', // Médio
+    status: 'todo',
+  },
+  {
+    id: uuidv4(),
+    title: 'Finalize Release Notes',
+    description: 'Documentation',
+    content: 'Prepare and publish.', // Curto
+    status: 'done',
+  },
+  {
+    id: uuidv4(),
+    title: 'Conduct Security Audit',
+    description: 'System Security',
+    content:
+      'Evaluate the application’s security measures comprehensively, including authentication, authorization, and data encryption protocols. Conduct penetration testing to identify potential vulnerabilities, simulate real-world attacks, and assess the effectiveness of implemented safeguards. Review server configurations, ensure proper patching of known exploits, and validate compliance with industry security standards. Document findings in detail and propose a prioritized action plan to address identified risks while enhancing overall system resilience.', // Longo
+    status: 'review',
+  },
+  {
+    id: uuidv4(),
+    title: 'Optimize Carousel Animations',
+    description: 'UI Enhancements',
+    content:
+      'Improve the smoothness and responsiveness of carousel animations for a better user experience.', // Médio
     status: 'carousel',
   },
   {
     id: uuidv4(),
-    title: 'Carousel 2',
-    description: 'User Support Docs',
+    title: 'Add Swipe Functionality',
+    description: 'Mobile Optimization',
     content:
-      'Review feedback and refine the guide for clarity and completeness. Add screenshots and examples where necessary to improve usability for end-users.', // Longo
+      'Implement swipe gestures for navigating the carousel on touch devices.', // Curto
     status: 'carousel',
   },
   {
     id: uuidv4(),
-    title: 'Carousel 3',
-    description: 'User Support Docs',
+    title: 'Update Carousel Images',
+    description: 'Content Refresh',
     content:
-      'Review feedback and refine the guide for clarity and completeness. Add screenshots and examples where necessary to improve usability for end-users.', // Longo
+      'Replace outdated images in the carousel with new, high-quality visuals that align with the current brand theme.', // Médio
     status: 'carousel',
   },
 ];

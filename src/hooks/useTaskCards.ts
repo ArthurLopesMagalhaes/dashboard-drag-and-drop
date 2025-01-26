@@ -8,8 +8,9 @@ import { TaskCardProps } from '../components/task-card';
 import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
 import { SAMPLE_TASKS } from '../mocks/sampleTasks';
+import toast from 'react-hot-toast';
 
-export function useDragAndDropCards() {
+export function useTaskCards() {
   const [tasks, setTasks] = useState(SAMPLE_TASKS);
 
   const sensors = useSensors(
@@ -22,6 +23,7 @@ export function useDragAndDropCards() {
 
   function handleDeleteTask(taskId: string) {
     setTasks(() => tasks.filter((task) => task.id !== taskId));
+    toast.error('Task deleted!', { position: 'top-right' });
   }
 
   function handleAddNewTask(status: TaskCardProps['status']) {
@@ -34,6 +36,7 @@ export function useDragAndDropCards() {
     };
 
     setTasks((prevTasks) => [...prevTasks, newTask]);
+    toast.success('Task created!', { position: 'top-right' });
   }
 
   function handleDragEnd(event: DragEndEvent) {

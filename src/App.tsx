@@ -1,9 +1,11 @@
-import { TaskBoard } from "./components/task-board";
+import { Toaster } from 'react-hot-toast';
+import { TaskBoard } from './components/task-board';
 
 function App() {
   return (
-    <div className="bg-background w-full flex flex-col items-center justify-between p-4 max-w-[1440px] mx-auto overflow-hidden">
+    <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center justify-between overflow-hidden bg-background p-4">
       <TaskBoard />
+      <Toaster />
     </div>
   );
 }

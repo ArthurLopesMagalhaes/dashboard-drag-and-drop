@@ -8,7 +8,7 @@ export interface TaskCardProps {
   title: string;
   description: string;
   content: string;
-  status: 'todo' | 'inProgress' | 'review' | 'carousel';
+  status: 'todo' | 'inProgress' | 'review' | 'done' | 'carousel';
   onRemove: (id: string) => void;
 }
 
@@ -41,16 +41,7 @@ export function TaskCard({
       // transition={{ duration: 0.5, ease: "easeInOut" }}
     >
       <div className="p-4 pb-2">
-        <div className="mb-2 flex gap-2">
-          <Button
-            variant="outline"
-            className="w-full text-muted-foreground hover:text-foreground"
-            onClick={() => onRemove(id)}
-          >
-            <Trash className="mr-2 h-4 w-4" />
-            Delete task
-          </Button>
-        </div>
+        <div className="mb-2 flex gap-2"></div>
         <h3 className="text-sm font-semibold">{title}</h3>
       </div>
       <div className="p-4 pt-0">
@@ -58,6 +49,14 @@ export function TaskCard({
         <div className="rounded-lg bg-zinc-200 p-3">
           <p>{content}</p>
         </div>
+        <Button
+          variant="outline"
+          className="mt-4 w-full text-muted-foreground hover:text-foreground"
+          onClick={() => onRemove(id)}
+        >
+          <Trash className="mr-2 h-4 w-4" />
+          Delete task
+        </Button>
       </div>
     </motion.div>
   );

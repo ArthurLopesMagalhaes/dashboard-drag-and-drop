@@ -42,7 +42,7 @@ export function TaskColumn({
       <div
         ref={setNodeRef}
         className={cn(
-          'min-h-20 flex-1 rounded-lg border-2 border-gray-200 p-1',
+          'min-h-20 flex-1 gap-3 rounded-lg border-2 border-gray-200 p-1',
           isOver && 'bg-green-100'
         )}
       >
