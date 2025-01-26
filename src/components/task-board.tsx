@@ -5,7 +5,7 @@ import { TaskColumn } from './task-column';
 import { SAMPLE_COLUMNS } from '../mocks/sampleColumns';
 
 import { useDragAndDropCards } from '../hooks/useDragAndDropCards';
-import { CarouselSpacing } from './carousel';
+import { Carousel } from './carousel';
 
 export function TaskBoard() {
   const { tasks, sensors, handleDeleteTask, handleAddNewTask, handleDragEnd } =
@@ -30,7 +30,7 @@ export function TaskBoard() {
             ))}
           </div>
         </div>
-        <CarouselSpacing
+        <Carousel
           id="carousel"
           tasks={tasks.filter((task) => task.status === 'carousel')}
           onRemoveTask={handleDeleteTask}

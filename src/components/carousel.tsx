@@ -2,7 +2,7 @@ import { useDroppable } from '@dnd-kit/core';
 import { TaskCard, TaskCardProps } from './task-card';
 
 import {
-  Carousel,
+  Carousel as CarouselRoot,
   CarouselContent,
   CarouselItem,
   CarouselNext,
@@ -10,23 +10,19 @@ import {
 } from './ui/carousel';
 import { cn } from '../lib/utils';
 
-interface CarouselSpacingProps {
+interface CarouselProps {
   id: string;
   tasks: Omit<TaskCardProps, 'onRemove'>[];
   onRemoveTask: (id: string) => void;
 }
 
-export function CarouselSpacing({
-  id,
-  tasks,
-  onRemoveTask,
-}: CarouselSpacingProps) {
+export function Carousel({ id, tasks, onRemoveTask }: CarouselProps) {
   const { setNodeRef, isOver } = useDroppable({
     id: id,
   });
 
   return (
-    <Carousel className="w-full max-w-screen-lg">
+    <CarouselRoot className="max-w-[200px] md:max-w-screen-md lg:max-w-screen-lg">
       <CarouselContent
         ref={setNodeRef}
         className={cn('min-h-52', isOver && 'bg-green-100')}
@@ -40,7 +36,7 @@ export function CarouselSpacing({
         )}
 
         {tasks.map((task) => (
-          <CarouselItem className="md:basis-1/2 lg:basis-1/3">
+          <CarouselItem className="basis-full md:basis-1/2 lg:basis-1/3">
             <TaskCard
               id={task.id}
               title={task.title}
@@ -54,6 +50,6 @@ export function CarouselSpacing({
       </CarouselContent>
       <CarouselPrevious />
       <CarouselNext />
-    </Carousel>
+    </CarouselRoot>
   );
 }
