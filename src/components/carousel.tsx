@@ -1,22 +1,55 @@
-import { TaskCard } from "./task-card";
+import { useDroppable } from '@dnd-kit/core';
+import { TaskCard, TaskCardProps } from './task-card';
 
 import {
   Carousel,
   CarouselContent,
+  CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "./ui/carousel";
+} from './ui/carousel';
+import { cn } from '../lib/utils';
 
-export function CarouselSpacing() {
+interface CarouselSpacingProps {
+  id: string;
+  tasks: Omit<TaskCardProps, 'onRemove'>[];
+  onRemoveTask: (id: string) => void;
+}
+
+export function CarouselSpacing({
+  id,
+  tasks,
+  onRemoveTask,
+}: CarouselSpacingProps) {
+  const { setNodeRef, isOver } = useDroppable({
+    id: id,
+  });
+
   return (
-    <Carousel className="w-full max-w-sm">
-      <CarouselContent>
-        {Array.from({ length: 8 }).map(() => (
-          <TaskCard
-            title="Hi"
-            content="juihafyugfhbf iafb aif\"
-            description="Hello"
-          />
+    <Carousel className="w-full max-w-screen-lg">
+      <CarouselContent
+        ref={setNodeRef}
+        className={cn('min-h-52', isOver && 'bg-green-100')}
+      >
+        {tasks.length === 0 && (
+          <CarouselItem>
+            <div className="flex h-full items-center justify-center">
+              <p className="text-muted-foreground">Drop tasks here</p>
+            </div>
+          </CarouselItem>
+        )}
+
+        {tasks.map((task) => (
+          <CarouselItem className="md:basis-1/2 lg:basis-1/3">
+            <TaskCard
+              id={task.id}
+              title={task.title}
+              description={task.description}
+              content={task.content}
+              status={task.status}
+              onRemove={() => onRemoveTask(task.id)}
+            />
+          </CarouselItem>
         ))}
       </CarouselContent>
       <CarouselPrevious />

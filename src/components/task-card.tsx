@@ -1,14 +1,14 @@
-import { useDraggable } from "@dnd-kit/core";
-import { Trash } from "lucide-react";
-import { Button } from "./ui/button";
-import { motion } from "motion/react";
+import { useDraggable } from '@dnd-kit/core';
+import { Trash } from 'lucide-react';
+import { Button } from './ui/button';
+import { motion } from 'motion/react';
 
 export interface TaskCardProps {
   id: string;
   title: string;
   description: string;
   content: string;
-  status: "todo" | "inProgress" | "review";
+  status: 'todo' | 'inProgress' | 'review' | 'carousel';
   onRemove: (id: string) => void;
 }
 
@@ -34,28 +34,28 @@ export function TaskCard({
       ref={setNodeRef}
       {...listeners}
       {...attributes}
-      className="mb-4 cursor-pointer hover:shadow-md transition-shadow border bg-zinc-100 border-zinc-200 rounded-lg"
+      className="mb-4 cursor-pointer rounded-lg border border-zinc-200 bg-zinc-100 transition-shadow hover:shadow-md"
       style={style}
       // initial={{ opacity: 0, scale: 0.8 }}
       // animate={{ opacity: 1, scale: 1 }}
       // transition={{ duration: 0.5, ease: "easeInOut" }}
     >
       <div className="p-4 pb-2">
-        <div className="flex gap-2 mb-2">
+        <div className="mb-2 flex gap-2">
           <Button
             variant="outline"
             className="w-full text-muted-foreground hover:text-foreground"
             onClick={() => onRemove(id)}
           >
-            <Trash className="h-4 w-4 mr-2" />
+            <Trash className="mr-2 h-4 w-4" />
             Delete task
           </Button>
         </div>
-        <h3 className="font-semibold text-sm">{title}</h3>
+        <h3 className="text-sm font-semibold">{title}</h3>
       </div>
       <div className="p-4 pt-0">
-        <p className="text-sm text-muted-foreground mb-4">{description}</p>
-        <div className="bg-zinc-200 p-3 rounded-lg">
+        <p className="mb-4 text-sm text-muted-foreground">{description}</p>
+        <div className="rounded-lg bg-zinc-200 p-3">
           <p>{content}</p>
         </div>
       </div>
