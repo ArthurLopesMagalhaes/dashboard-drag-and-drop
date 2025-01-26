@@ -36,9 +36,9 @@ export function TaskCard({
       {...attributes}
       className="mb-4 cursor-pointer rounded-lg border border-zinc-200 bg-zinc-100 transition-shadow hover:shadow-md"
       style={style}
-      // initial={{ opacity: 0, scale: 0.8 }}
-      // animate={{ opacity: 1, scale: 1 }}
-      // transition={{ duration: 0.5, ease: "easeInOut" }}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5, ease: 'easeInOut' }}
     >
       <div className="p-4 pb-2">
         <div className="mb-2 flex gap-2"></div>
