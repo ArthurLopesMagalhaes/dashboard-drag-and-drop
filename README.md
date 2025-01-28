@@ -24,7 +24,7 @@ Siga os passos abaixo para executar o projeto localmente:
 
 ```bash
 git clone https://github.com/ArthurLopesMagalhaes/dashboard-drag-and-drop.gits
-cd seu-projeto
+cd dashboard-drag-and-drop
 ```
 
 ### 2. Instale as dependências
