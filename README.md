@@ -23,7 +23,7 @@ Siga os passos abaixo para executar o projeto localmente:
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/ArthurLopesMagalhaes/dashboard-drag-and-drop.gits
+git clone https://github.com/ArthurLopesMagalhaes/dashboard-drag-and-drop.git
 cd dashboard-drag-and-drop
 ```
 
