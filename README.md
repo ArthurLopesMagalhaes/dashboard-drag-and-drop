@@ -7,7 +7,6 @@
 - **ReactJS**
 - **TailwindCSS** para estilização.
 - **Dnd-Kit** para funcionalidades de arrastar e soltar.
-- **Carousel shadcn/ui** para o carrossel interativo.
 - **Vite** como ferramenta de build e servidor de desenvolvimento.
 
 ## Pré-requisitos
@@ -49,7 +48,7 @@ yarn dev
 
 - Carrossel:
 
-  - Desenvolvido com a biblioteca React-Slick, totalmente customizado para integração com TailwindCSS.
+  - Desenvolvido com o componente Carousel do shadcn/ui, totalmente customizado para integração com TailwindCSS.
 
 - Responsividade:
   - Adaptado para 1, 3 e 4 colunas, conforme o tamanho da tela.
